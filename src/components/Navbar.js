@@ -1,19 +1,24 @@
 "use client";
 
-import { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
+import { authClient } from "@/lib/auth-client";
 
 export default function Navbar() {
-  // As requested, using a state for login
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { data: session } = authClient.useSession();
+  const user = session?.user;
+  const profileImage = user?.photo?.trim() ? user.photo : "/avatar.png";
+
+  const handleLogout = async function () {
+    await authClient.signOut();
+  };
 
   return (
     <nav className="sticky top-0 z-50 w-full border-b border-gray-100 bg-white">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        {/* Left: Website Logo */}
         <div className="flex flex-shrink-0 items-center">
-          <Link 
-            href="/" 
+          <Link
+            href="/"
             className="flex items-center gap-2 transition-transform hover:scale-105"
           >
             <div className="h-8 w-8 rounded-lg bg-linear-to-br from-indigo-500 via-purple-500 to-pink-500 shadow-lg shadow-indigo-500/20" />
@@ -23,31 +28,29 @@ export default function Navbar() {
           </Link>
         </div>
 
-        {/* Centre: Navigation Links */}
         <div className="hidden md:flex md:items-center md:gap-8">
           <Link
             href="/"
-            className="text-sm font-medium text-foreground/60 transition-colors hover:text-foreground"
+            className="text-sm font-medium text-black transition-colors hover:text-purple-400"
           >
             Home
           </Link>
           <Link
             href="/all-tiles"
-            className="text-sm font-medium text-foreground/60 transition-colors hover:text-foreground"
+            className="text-sm font-medium text-black transition-colors hover:text-purple-400"
           >
             All Tiles
           </Link>
           <Link
             href="/my-profile"
-            className="text-sm font-medium text-foreground/60 transition-colors hover:text-foreground"
+            className="text-sm font-medium text-black transition-colors hover:text-purple-400"
           >
             My Profile
           </Link>
         </div>
 
-        {/* Right: Login Button (Conditional) */}
         <div className="flex items-center gap-4">
-          {!isLoggedIn ? (
+          {!user ? (
             <Link
               href="/login"
               className="group relative inline-flex items-center justify-center overflow-hidden rounded-full p-0.5 text-sm font-medium text-foreground focus:ring-4 focus:ring-indigo-300 focus:outline-none dark:focus:ring-indigo-800"
@@ -57,12 +60,31 @@ export default function Navbar() {
               </span>
             </Link>
           ) : (
-            <div className="h-8 w-8 rounded-full bg-foreground/10 flex items-center justify-center text-xs font-bold text-foreground">
-              JD
+            <div className="flex gap-4 items-center">
+              <Link
+                href="/my-profile"
+                className="flex items-center gap-2 rounded-full border border-gray-200 bg-white px-2 py-1 transition hover:bg-gray-50"
+              >
+                <Image
+                  src={profileImage}
+                  alt={user.name ? `${user.name} profile` : "User avatar"}
+                  width={32}
+                  height={32}
+                  className="rounded-full object-cover"
+                />
+                <span className="text-xs font-bold text-black">
+                  {user.name}
+                </span>
+              </Link>
+              <button
+                className="text-white bg-purple-500 rounded-full px-3 py-1 hover:bg-green-300 cursor-pointer"
+                onClick={handleLogout}
+              >
+                Logout
+              </button>
             </div>
           )}
-          
-          {/* Mobile Menu Button (Optional, but adds to "premium" feel) */}
+
           <button className="md:hidden flex h-8 w-8 items-center justify-center rounded-lg hover:bg-foreground/5">
             <svg
               className="h-6 w-6"
