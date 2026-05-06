@@ -11,7 +11,7 @@ export default function AllTilesPage() {
   useEffect(() => {
     async function fetchTiles() {
       try {
-        const res = await fetch("http://localhost:5000/tiles"); // Adjusting to port 5000 based on package.json
+        const res = await fetch("https://json-server-data-0n0i.onrender.com/tiles");
         if (!res.ok) throw new Error("Failed to fetch");
         const data = await res.json();
         setTiles(data);
@@ -33,7 +33,7 @@ export default function AllTilesPage() {
       {/* Hero Section with Search */}
       <div className="bg-indigo-50/50 py-16 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl mb-8">
+          <h1 className="animate__animated animate__fadeInDown text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl mb-8">
             The Gallery
           </h1>
           <div className="max-w-xl mx-auto relative">
@@ -60,7 +60,7 @@ export default function AllTilesPage() {
         ) : filteredTiles.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
             {filteredTiles.map((tile) => (
-              <div key={tile.id} className="group relative flex flex-col rounded-2xl border border-gray-100 bg-gray-50 p-4 transition-all hover:shadow-xl hover:-translate-y-1">
+              <Link key={tile.id} href={`/all-tiles/${tile.id}`} className="group relative flex flex-col rounded-2xl border border-gray-100 bg-gray-50 p-4 transition-all hover:shadow-xl hover:-translate-y-1">
                 <div className="relative h-48 w-full overflow-hidden rounded-xl bg-gray-100 mb-4">
                   <div className="absolute inset-0 bg-linear-to-br from-gray-100 to-gray-200" />
                   <div className="absolute inset-0 flex items-center justify-center text-gray-400 font-medium text-center px-4">
@@ -70,15 +70,11 @@ export default function AllTilesPage() {
                 <div className="flex flex-1 flex-col">
                   <h3 className="text-lg font-bold text-gray-900 mb-1">{tile.title}</h3>
                   <span className="text-sm font-medium text-indigo-600 mb-4">${tile.price}</span>
-                  
-                  <Link
-                    href={`/all-tiles/${tile.id}`}
-                    className="mt-auto block w-full text-center rounded-lg bg-gray-50 py-2.5 text-sm font-semibold text-gray-900 hover:bg-indigo-600 hover:text-white transition-colors"
-                  >
-                    Details
-                  </Link>
+                  <div className="mt-auto block w-full text-center rounded-lg bg-white border border-gray-200 py-2.5 text-sm font-semibold text-gray-900 group-hover:bg-indigo-600 group-hover:text-white group-hover:border-indigo-600 transition-colors">
+                    View Details →
+                  </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         ) : (

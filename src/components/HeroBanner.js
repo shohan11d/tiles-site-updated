@@ -8,13 +8,13 @@ export default function HeroBanner() {
       <div className="absolute bottom-0 left-0 -z-10 h-64 w-64 rounded-full bg-pink-100 blur-3xl opacity-30" />
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-        <h1 className="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-6xl mb-6">
+        <h1 className="animate__animated animate__fadeInDown text-4xl font-extrabold tracking-tight text-gray-900 sm:text-6xl mb-6">
           Discover Your Perfect <span className="text-transparent bg-clip-text bg-linear-to-r from-indigo-600 to-pink-600">Aesthetic</span>
         </h1>
-        <p className="mx-auto max-w-2xl text-lg text-gray-600 mb-10">
+        <p className="animate__animated animate__fadeIn animate__delay-1s mx-auto max-w-2xl text-lg text-gray-600 mb-10">
           Transform your space with our curated collection of premium tiles. From modern minimalist to classic elegance, find the perfect foundation for your home.
         </p>
-        <div className="flex items-center justify-center gap-4">
+        <div className="animate__animated animate__fadeInUp animate__delay-1s flex items-center justify-center gap-4">
           <Link
             href="/all-tiles"
             className="rounded-full bg-indigo-600 px-8 py-4 text-sm font-semibold text-white shadow-lg shadow-indigo-200 transition-all hover:bg-indigo-700 hover:scale-105 active:scale-95"

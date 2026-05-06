@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 
 async function getTile(id) {
   try {
-    const res = await fetch(`http://localhost:5000/tiles/${id}`, {
+    const res = await fetch(`https://json-server-data-0n0i.onrender.com/tiles/${id}`, {
       next: { revalidate: 0 },
     });
     if (!res.ok) {
@@ -41,7 +41,7 @@ export default async function TileDetailsPage({ params }) {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
           {/* Left: Large Visual Preview */}
-          <div className="relative w-full aspect-square bg-gray-100 rounded-3xl overflow-hidden shadow-2xl shadow-gray-200">
+          <div className="animate__animated animate__fadeInLeft relative w-full aspect-square bg-gray-100 rounded-3xl overflow-hidden shadow-2xl shadow-gray-200">
             <div className="absolute inset-0 bg-linear-to-br from-gray-100 to-gray-200" />
             <div className="absolute inset-0 flex flex-col items-center justify-center p-8">
               <span className="text-gray-400 font-medium text-xl text-center">{tile.title}</span>
@@ -50,7 +50,7 @@ export default async function TileDetailsPage({ params }) {
           </div>
 
           {/* Right: Tile Details */}
-          <div className="flex flex-col pt-4">
+          <div className="animate__animated animate__fadeInRight flex flex-col pt-4">
             <div className="flex items-center gap-3 mb-4">
               <span className="inline-flex items-center rounded-md bg-indigo-50 px-2 py-1 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-700/10 uppercase tracking-wider">
                 {tile.category}
