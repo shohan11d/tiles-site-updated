@@ -72,7 +72,7 @@ export default function Navbar() {
                 </span>
               </Link>
               <button
-                className="text-white bg-red-600 rounded-full px-3 py-1 hover:bg-red-300 cursor-pointer"
+                className="text-white bg-red-600 text-sm rounded-full px-3 py-1 hover:bg-red-300 cursor-pointer"
                 onClick={handleLogout}
               >
                 Logout
