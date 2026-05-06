@@ -35,18 +35,7 @@ npm run server
 
 The tile data is pulled from `https://json-server-data-0n0i.onrender.com/tiles` in the current app configuration.
 
-## Environment Variables
 
-Create a `.env` file in the project root and add values for:
-
-```env
-MONGO_URI=
-BETTER_AUTH_URL=
-GOOGLE_CLIENT_ID=
-GOOGLE_CLIENT_SECRET=
-GITHUB_CLIENT_ID=
-GITHUB_CLIENT_SECRET=
-```
 
 ## Scripts
 
