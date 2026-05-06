@@ -23,7 +23,7 @@ export default function Navbar() {
             className="flex items-center gap-2 transition-transform hover:scale-105"
           >
             <div className="h-8 w-8 rounded-lg bg-linear-to-br from-indigo-500 via-purple-500 to-pink-500 shadow-lg shadow-indigo-500/20" />
-            <span className="text-xl font-bold tracking-tight text-foreground sm:block hidden">
+            <span className="text-xl font-bold tracking-tight text-blue-400 sm:block hidden">
               Tiles<span className="text-indigo-500">Gallery</span>
             </span>
           </Link>
