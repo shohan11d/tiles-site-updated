@@ -7,7 +7,8 @@ import { authClient } from "@/lib/auth-client";
 export default function Navbar() {
   const { data: session } = authClient.useSession();
   const user = session?.user;
-  const profileImage = user?.photo?.trim() ? user.photo : "/avatar.png";
+  console.log(user);
+  const profileImage = user?.image?.trim() ? user.photo : "/avatar.png";
 
   const handleLogout = async function () {
     await authClient.signOut();
@@ -63,21 +64,15 @@ export default function Navbar() {
             <div className="flex gap-4 items-center">
               <Link
                 href="/my-profile"
-                className="flex items-center gap-2 rounded-full border border-gray-200 bg-white px-2 py-1 transition hover:bg-gray-50"
+                className="flex items-center gap-2 rounded-full border border-gray-200 bg-blue-500 px-2 py-2 transition hover:bg-gray-50"
               >
-                <Image
-                  src={profileImage}
-                  alt={user.name ? `${user.name} profile` : "User avatar"}
-                  width={32}
-                  height={32}
-                  className="rounded-full object-cover"
-                />
-                <span className="text-xs font-bold text-black">
+             
+                <span className="text-xs font-bold text-white py1 ">
                   {user.name}
                 </span>
               </Link>
               <button
-                className="text-white bg-purple-500 rounded-full px-3 py-1 hover:bg-green-300 cursor-pointer"
+                className="text-white bg-red-600 rounded-full px-3 py-1 hover:bg-red-300 cursor-pointer"
                 onClick={handleLogout}
               >
                 Logout

@@ -2,10 +2,12 @@
 
 import { useForm } from "react-hook-form";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import toast, { Toaster } from "react-hot-toast";
 import { authClient } from "@/lib/auth-client";
 
 export default function RegisterPage() {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -21,7 +23,7 @@ export default function RegisterPage() {
       email,
       password,
       image: photo,
-      callbackURL: "/",
+      callbackURL: "/login",
     });
 
     console.log(res, error);
@@ -32,6 +34,7 @@ export default function RegisterPage() {
 
     if (res) {
       toast.success("Signup successful");
+      router.push("/login");
     }
   };
 
